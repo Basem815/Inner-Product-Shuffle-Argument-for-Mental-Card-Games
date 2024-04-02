@@ -96,7 +96,6 @@ func InitialCiphertexts(pp preprocessing.PublicParameters, agg_key *big.Int, pla
 					!players[j].VerifyDHProof(pp, agg_key, g_pow_r, h_pow_r, proof_dh){
 					panic("Verification failed")
 				}
-				
 			}
 		}
 		// If all proofs have been verified, append them to ciphertexts
@@ -137,10 +136,11 @@ func (player *Player) PartialMessageDecrypt(pp preprocessing.PublicParameters, m
 	return new(big.Int).Exp(msg, secretSInv, p )
 }
 
-// The modified decryption function (Returns (g^{m_i}))
+// The modified decryption function (Returns (g^{m_i}) instead of (g^{\bar{s}m_i}))
 func (decrypter *Player) Decrypt(pp preprocessing.PublicParameters, cipherText [2]*big.Int,  allPlayers []Player) (*big.Int) {
 	otherPlayers := ExcludePlayer(allPlayers, decrypter.Id)
 	partial_decrypt := big.NewInt(1)
+	// All other players partially decrypt the ciphertext
 	for _,player := range otherPlayers{
 		partial_decrypt.Mul(partial_decrypt,player.PartialDecrypt(pp, cipherText))
 		partial_decrypt.Mod(partial_decrypt, pp.GetPrimeP())
@@ -150,7 +150,7 @@ func (decrypter *Player) Decrypt(pp preprocessing.PublicParameters, cipherText [
 	msg := new(big.Int).Mul(cipherText[1], partial_decrypt)
 	msg.Mod(msg, pp.GetPrimeP())
 
-	// Have player generate a random temporary power and raise the message to that power
+	// Have decrypter generate a random temporary power and raise the message to that power
 	ephemeralPowerDelta := decrypter.GenerateRandValue(pp)
 	ephemeralPowerDeltaInverse := new(big.Int).ModInverse(ephemeralPowerDelta, pp.GetPrimeQ())
 
