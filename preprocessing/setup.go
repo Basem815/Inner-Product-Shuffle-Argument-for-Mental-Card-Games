@@ -33,9 +33,6 @@ func generatePrimes(security_param int) (prime_p, prime_q *big.Int){
             prime_q = q
             prime_p = p
             
-            //fmt.Printf("Value for prime q %v of length %v\n", q, q.BitLen())
-            // fmt.Printf("Prime p: %v of length %v\n", prime_p, prime_p.BitLen())
-            
             fmt.Printf("Prime p of length %v-bits and prime q of length %v-bits created \n", p.BitLen(), q.BitLen())
             break 
         }
@@ -116,8 +113,6 @@ func Setup(security_param, n int, securityParamFixed bool) (pp PublicParameters)
     
 
     generators := generators(p, q, 2*n+3)  // First 3 reserved for g, h, u and  remaining 2n for vec_g, vec_h
-    // n = 5 -- >  2*n + 2 = 12             (1, 1, 5, 5)    generators = [g_0, g_1, g_2, g_3, g_4, g_5, g_6, ... g_10, g_11 ]
-    // generators[]
     return PublicParameters{
     	g:     generators[0],
         h:     generators[1],
@@ -132,7 +127,6 @@ func Setup(security_param, n int, securityParamFixed bool) (pp PublicParameters)
 func (pp PublicParameters) GetGeneratorG() (*big.Int) {
     return pp.g
 }
-
 func (pp *PublicParameters) SetGeneratorG(new_g *big.Int) () {
     pp.g = new_g
 }
@@ -151,12 +145,9 @@ func (pp PublicParameters) GetGeneratorsVec_G() ([]*big.Int) {
 func (pp PublicParameters) GetGeneratorsVec_H() ([]*big.Int) {
     return pp.vec_h
 }
-
-
 func (pp PublicParameters) GetPrimeP() (*big.Int) {
     return pp.p
 }
-
 func (pp PublicParameters) GetPrimeQ() (*big.Int) {
     return pp.q
 }
