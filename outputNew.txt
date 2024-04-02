@@ -1,0 +1,24 @@
+Starting main with 3 players, 52 cards in total with security paramter of 2048-bits 
+Mapping for cards to group values created.
+Key-pairs of all 3 players verified 
+3 Players initialized 
+Initializing ciphertexts function took 5.5046243s
+Initial deck created
+Beginning of Shuffle operation by player 1 
+Player with id 1 successfully performed the shuffle operation 
+Start of the shuffle argument by player 1 
+All 3 inner products verified successfully 
+Shuffle argument by player 1 verified successfully by all other players (using inner product argument = true)
+Beginning of Shuffle operation by player 2 
+Player with id 2 successfully performed the shuffle operation 
+Start of the shuffle argument by player 2 
+Shuffle argument by player 2 verified successfully by all other players (using inner product argument = false)
+Beginning of Shuffle operation by player 3 
+Player with id 3 successfully performed the shuffle operation 
+Start of the shuffle argument by player 3 
+All 3 inner products verified successfully 
+Shuffle argument by player 3 verified successfully by all other players (using inner product argument = true)
+Each of the 3 players performed the shuffle successfully 
+Player 1 decrypted card 0 to obtain the value: {6 ♦} 
+Player 2 decrypted card 1 to obtain the value: {K ♥} 
+Player 3 decrypted card 2 to obtain the value: {2 ♠} 
