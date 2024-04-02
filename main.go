@@ -15,7 +15,7 @@ import (
 func main() {
 
 	
-	outputFile, err := os.OpenFile("outputNew.txt", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0666)
+	outputFile, err := os.OpenFile("output.txt", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0666)
     if err != nil {
         fmt.Println("Error opening file:", err)
         return
